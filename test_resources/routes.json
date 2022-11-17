@@ -1,0 +1,40 @@
+{
+  "routes":
+  [
+    {
+      "copyrights": "Map data ©2022 Inst. Geogr. Nacional",
+      "legs":
+      [
+        {
+          "startLocation": { "lat": 39.862808, "lng": -4.0273727 },
+          "steps":
+          [
+            {
+              "startLocation": { "lat": 39.862808, "lng": -4.0273727 },
+            },
+            {
+              "startLocation":
+              { "lat": 39.8681019, "lng": -4.029378299999999 },
+            },
+            {
+              "startLocation": { "lat": 39.8675297, "lng": -4.0275807 },
+            },
+            {
+              "startLocation": { "lat": 39.8688577, "lng": -4.021535 },
+            },
+          ],
+          "traffic_speed_entry": [],
+          "via_waypoint": [],
+        },
+      ],
+      "overviewPolyline":
+      {
+        "encodedPath": "esp~Fj}}uOn{Hh`FyfE`sC",
+      },
+      "summary": "A-42",
+      "warnings": [],
+      "waypoint_order": [],
+    },
+  ],
+  "status": "OK",
+}
