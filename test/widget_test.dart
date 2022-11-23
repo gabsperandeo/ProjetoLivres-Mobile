@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:livres_entregas_mobile/minhas/maps.dart';
 
+//88% maps.dart Coverage
 Future<void> main() async {
   testWidgets('MapsTest', (WidgetTester tester) async {
     String routes = getRoutes();
