@@ -18,6 +18,7 @@ class _MapsState extends State<Maps> {
 
   Set<Polyline> _polylines = Set<Polyline>();
   Set<Marker> _markers = Set<Marker>();
+  List<String> _enderecosMarkers = [];
   int _polylineIdCounter = 1;
   int _markerIdCounter = 1;
   double _latitudeInicial = 0;
@@ -49,6 +50,23 @@ class _MapsState extends State<Maps> {
             color: Color(0xFF80d9ff),
           ),
         ),
+        actions: <Widget>[
+            Padding(
+            padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) => _listaEnderecos(context),
+                  );
+                },
+                child: Icon(
+                  Icons.map_outlined,
+                  size: 26.0,
+                ),
+              )
+          ),
+        ],
         centerTitle: true,
         backgroundColor: Color(0xFF086790),
       ),
@@ -110,6 +128,67 @@ class _MapsState extends State<Maps> {
         position: LatLng(_lat, _lng),
         backgroundColor: Colors.lightBlueAccent,
       ));
+
+      _enderecosMarkers.add(leg['startAddress']);
     });
+  }
+
+  /* Widget responsável pelo botão que listará os endereços de cada marcador */
+  Widget _listaEnderecos(BuildContext context) {
+    return new AlertDialog(
+      title: Text("Endereço dos Marcadores",
+        style: TextStyle(
+          color: Color((0xFFec431d),),
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      content: SingleChildScrollView(
+        child: new Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            _listarEnderecosMarkers(),
+          ],
+        ),
+      ),
+      actions: <Widget>[
+        new IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.close),
+          color: Color(0xFFec431d),
+        ),
+      ],
+    );
+  }
+
+  /* Widget responsável por listar os endereços, em ordem, de acordo com o marcador */
+  Widget _listarEnderecosMarkers() {
+    return ListView.separated(
+        padding: const EdgeInsets.all(8),
+        itemCount: (_enderecosMarkers.length/2).toInt(),
+        separatorBuilder: (_, __) => const Divider(
+          color: Color(0xFFf26a4b),
+        ),
+        shrinkWrap: true,
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+              child: RichText(
+                text: TextSpan(
+                  style: const TextStyle(
+                    fontSize: 13.0,
+                    color: Colors.black,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(text: (index + 1).toString() + ': ', style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.lightBlueAccent)),
+                    TextSpan(text: _enderecosMarkers[index]),
+                  ],
+                ),
+              ),
+          );
+        }
+    );
   }
 }
